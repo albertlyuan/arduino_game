@@ -2,8 +2,8 @@ import pygame
 from pygame import Rect
 
 DEFAULT_IMAGE_SIZE = 50
-JUMP_HEIGHT = 8
-GRAVITY_CONSTANT = 0.1
+JUMP_HEIGHT = 10
+GRAVITY_CONSTANT = 0.27
 
 class Dino(pygame.sprite.Sprite):
     def __init__(self, image_file, groundlevel):
@@ -25,18 +25,17 @@ class Dino(pygame.sprite.Sprite):
 
     def update(self):
         self.gravity()
-        self.y += self.dy
         self.x += self.dx
         self.rect.left = self.x
         self.rect.top = self.y
 
     def gravity(self):
-        if self.jumping:
-            self.dy = self.dy + GRAVITY_CONSTANT
-            self.checkGround()
+        self.y = self.y + self.dy
+        self.dy = self.dy + GRAVITY_CONSTANT
+        self.checkGround()
 
     def checkGround(self):
-        if self.y + self.dy > self.ground:
+        if self.y > self.ground:
             self.dy = 0
             self.y = self.ground
             self.jumping = False

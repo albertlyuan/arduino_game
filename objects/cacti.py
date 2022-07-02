@@ -1,6 +1,6 @@
 import pygame
 from pygame import Rect
-DEFAULT_IMAGE_SIZE = 100
+DEFAULT_IMAGE_SIZE = 80
 SCROLL_SPEED = 20
 
 class Cacti(pygame.sprite.Sprite):
@@ -21,6 +21,6 @@ class Cacti(pygame.sprite.Sprite):
             self.reset()
         self.rect.left = self.x
         self.rect.top = self.y
-        
+
     def reset(self):
         self.x = self.resetLocation
