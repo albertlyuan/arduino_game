@@ -1,4 +1,3 @@
-from tkinter import W
 import pyfirmata
 import time
 import pygame
@@ -49,7 +48,11 @@ def game(arduino):
         #check endgame
         if dino.rect.colliderect(cacti.rect):
             print("dead")
-            time.sleep(0.5)
+            for i in range(10):
+                led.write(1)
+                time.sleep(0.1)
+                led.write(0)
+                time.sleep(0.1)
             exit(0)
         
         #check arduino input
@@ -69,4 +72,4 @@ def game(arduino):
         pygame.display.update()
 
 if __name__ == "__main__":
-    game(arduino=False)
+    game(arduino=True)
